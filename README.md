@@ -5,9 +5,6 @@ AngularJS Simple Datepicker directive
     - moment.js
     - fontawesome
 
-#### Example 
-
-Check out [the live demo](http://demo.jankuri.com/ngDatepicker/)
 
 #### Screenshot
 ![ScreenShot](https://raw.githubusercontent.com/jkuri/ngDatepicker/master/screenshot/ngDatepicker.png)
@@ -15,10 +12,6 @@ Check out [the live demo](http://demo.jankuri.com/ngDatepicker/)
 Install
 -------
 
-#### With bower:
-
-    $ bower install ngDatepicker
-    
 #### With npm:
 
     $ npm install ng-datepicker

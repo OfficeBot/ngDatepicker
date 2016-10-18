@@ -1,6 +1,6 @@
 {
   "name": "ng-datepicker",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "AngularJS Datepicker",
   "main": "index.js",
   "scripts": {
@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/jkuri/ngDatepicker.git"
+    "url": "https://github.com/OfficeBot/ngDatepicker.git"
   },
   "keywords": [
     "AngularJS",
@@ -19,9 +19,14 @@
     "fontawesome"
   ],
   "author": "Jan Kuri <jkuri88@gmail.com>",
+  "contributors" : [{ 
+    "name" : "Scott Peterson",
+    "email" : "scott.peterson@office-bot.com",
+    "url" : "https://www.office-bot.com/"
+  }],
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/jkuri/ngDatepicker/issues"
+    "url": "https://github.com/OfficeBot/ngDatepicker/issues"
   },
-  "homepage": "https://github.com/jkuri/ngDatepicker"
+  "homepage": "https://github.com/OfficeBot/ngDatepicker"
 }
