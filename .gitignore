@@ -1,2 +1,36 @@
-/bower_components/
-index.html
+dev-fs
+server/models/PROJECT_NUMBER.json
+# OS X
+.DS_Store*
+Icon?
+._*
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+*~
+
+
+# npm
+node_modules
+*.log
+*.gz
+
+
+# Coveralls
+coverage
+.istanbul.yml
+instrument.js
+
+# Benchmarking
+benchmarks/graphs
+
+# Dist folder
+client/dist
+
+# DOCS
+docs
