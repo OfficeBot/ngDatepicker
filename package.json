@@ -1,15 +1,78 @@
 {
-  "name": "ng-datepicker",
-  "version": "1.1.0",
+  "_args": [
+    [
+      {
+        "raw": "ng-datepicker@git://github.com/OfficeBot/ngDatepicker.git",
+        "scope": null,
+        "escapedName": "ng-datepicker",
+        "name": "ng-datepicker",
+        "rawSpec": "git://github.com/OfficeBot/ngDatepicker.git",
+        "spec": "git://github.com/OfficeBot/ngDatepicker.git",
+        "type": "hosted",
+        "hosted": {
+          "type": "github",
+          "ssh": "git@github.com:OfficeBot/ngDatepicker.git",
+          "sshUrl": "git+ssh://git@github.com/OfficeBot/ngDatepicker.git",
+          "httpsUrl": "git+https://github.com/OfficeBot/ngDatepicker.git",
+          "gitUrl": "git://github.com/OfficeBot/ngDatepicker.git",
+          "shortcut": "github:OfficeBot/ngDatepicker",
+          "directUrl": "https://raw.githubusercontent.com/OfficeBot/ngDatepicker/master/package.json"
+        }
+      },
+      "/Users/andrew/dev/office-bot/honeydew5/client"
+    ]
+  ],
+  "_from": "git://github.com/OfficeBot/ngDatepicker.git",
+  "_id": "ng-datepicker@1.1.0",
+  "_inCache": true,
+  "_location": "/ng-datepicker",
+  "_phantomChildren": {},
+  "_requested": {
+    "raw": "ng-datepicker@git://github.com/OfficeBot/ngDatepicker.git",
+    "scope": null,
+    "escapedName": "ng-datepicker",
+    "name": "ng-datepicker",
+    "rawSpec": "git://github.com/OfficeBot/ngDatepicker.git",
+    "spec": "git://github.com/OfficeBot/ngDatepicker.git",
+    "type": "hosted",
+    "hosted": {
+      "type": "github",
+      "ssh": "git@github.com:OfficeBot/ngDatepicker.git",
+      "sshUrl": "git+ssh://git@github.com/OfficeBot/ngDatepicker.git",
+      "httpsUrl": "git+https://github.com/OfficeBot/ngDatepicker.git",
+      "gitUrl": "git://github.com/OfficeBot/ngDatepicker.git",
+      "shortcut": "github:OfficeBot/ngDatepicker",
+      "directUrl": "https://raw.githubusercontent.com/OfficeBot/ngDatepicker/master/package.json"
+    }
+  },
+  "_requiredBy": [
+    "#USER",
+    "/"
+  ],
+  "_resolved": "git://github.com/OfficeBot/ngDatepicker.git#87da0a04883b5c89562f4175ed3f98998c70231b",
+  "_shasum": "7efea65312211f4c27af67472eb65fbf08a49fa6",
+  "_shrinkwrap": null,
+  "_spec": "ng-datepicker@git://github.com/OfficeBot/ngDatepicker.git",
+  "_where": "/Users/andrew/dev/office-bot/honeydew5/client",
+  "author": {
+    "name": "Jan Kuri",
+    "email": "jkuri88@gmail.com"
+  },
+  "bugs": {
+    "url": "https://github.com/OfficeBot/ngDatepicker/issues"
+  },
+  "contributors": [
+    {
+      "name": "Scott Peterson",
+      "email": "scott.peterson@office-bot.com",
+      "url": "https://www.office-bot.com/"
+    }
+  ],
+  "dependencies": {},
   "description": "AngularJS Datepicker",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/OfficeBot/ngDatepicker.git"
-  },
+  "devDependencies": {},
+  "gitHead": "87da0a04883b5c89562f4175ed3f98998c70231b",
+  "homepage": "https://github.com/OfficeBot/ngDatepicker",
   "keywords": [
     "AngularJS",
     "directive",
@@ -18,15 +81,18 @@
     "moment",
     "fontawesome"
   ],
-  "author": "Jan Kuri <jkuri88@gmail.com>",
-  "contributors" : [{
-    "name" : "Scott Peterson",
-    "email" : "scott.peterson@office-bot.com",
-    "url" : "https://www.office-bot.com/"
-  }],
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/OfficeBot/ngDatepicker/issues"
+  "main": "index.js",
+  "name": "ng-datepicker",
+  "optionalDependencies": {},
+  "readme": "#### ngDatepicker\nAngularJS Simple Datepicker directive\n\n#### Dependencies\n    - moment.js\n    - fontawesome\n\n\n#### Screenshot\n![ScreenShot](https://raw.githubusercontent.com/jkuri/ngDatepicker/master/screenshot/ngDatepicker.png)\n\nInstall\n-------\n\n#### With npm:\n\n    $ npm install ng-datepicker\n    \n#### Example Configuration (bower)\n```html\n<!DOCTYPE html>\n<html ng-app=\"app\">\n<head>\n\t<title>AngularJS DatePicker</title>\n\t<link rel=\"stylesheet\" href=\"//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css\">\n\t<link rel=\"stylesheet\" type=\"text/css\" href=\"src/css/ngDatepicker.css\">\n</head>\n<body ng-controller=\"Ctrl as ctrl\">\n\n\t<div>\n\t\t<h4>Basic Example</h4>\n\t\t<ng-datepicker ng-model=\"ctrl.date1\">\n\t\t</ng-datepicker>\n\t\t<span ng-bind=\"ctrl.date1\" style=\"display: block; margin-top: 5px;\"></span>\n\t</div>\n\n\t<div>\n\t\t<h4>Example with locale</h4\t>\n\t\t<ng-datepicker ng-model=\"ctrl.date2\" locale=\"sl\" format=\"DD.MM.YYYY\" view-format=\"Do MMMM YYYY\">\n\t\t</ng-datepicker>\n\t\t<span ng-bind=\"ctrl.date2\" style=\"display: block; margin-top: 5px;\"></span>\n\t</div>\n\n\n<script type=\"text/javascript\" src=\"https://ajax.googleapis.com/ajax/libs/angularjs/1.4.0/angular.min.js\"></script>\n<script type=\"text/javascript\" src=\"https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.3/moment-with-locales.min.js\"></script>\n<script type=\"text/javascript\" src=\"src/js/ngDatepicker.min.js\"></script>\n<script type=\"text/javascript\">\nvar app = angular.module('app', ['jkuri.datepicker']);\napp.controller('Ctrl', [function() {\n\tvar self = this;\n}]);\n</script>\n</body>\n</html>\n``` \n\n",
+  "readmeFilename": "README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OfficeBot/ngDatepicker.git"
   },
-  "homepage": "https://github.com/OfficeBot/ngDatepicker"
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.1.0"
 }

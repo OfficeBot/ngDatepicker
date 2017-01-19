@@ -4,11 +4,11 @@ angular.module('jkuri.datepicker', [])
 	'use strict';
 
 	var setScopeValues = function (scope, attrs) {
-		scope.format = attrs.format || 'YYYY-MM-DD';
-		scope.viewFormat = attrs.viewFormat || 'Do MMMM YYYY';
+		scope.format = attrs.format || 'MM/DD/YYYY';
+		scope.viewFormat = attrs.viewFormat || 'MM/DD/YYYY';
 		scope.locale = attrs.locale || 'en';
-		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || false;
-		scope.placeholder = attrs.placeholder || '';
+		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || true;
+		scope.placeholder = attrs.placeholder || 'mm/dd/yyyy';
 	};
 
 	return {
@@ -16,6 +16,10 @@ angular.module('jkuri.datepicker', [])
 		require: '?ngModel',
 		scope: {},
 		link: function (scope, element, attrs, ngModel) {
+
+			scope.externalClasses = attrs.class || '';
+			element.removeClass();
+
 			setScopeValues(scope, attrs);
 
 			scope.calendarOpened = false;
@@ -97,14 +101,33 @@ angular.module('jkuri.datepicker', [])
 				event.preventDefault();
 				var selectedDate = moment(date.day + '.' + date.month + '.' + date.year, 'DD.MM.YYYY');
 				ngModel.$setViewValue(selectedDate.format(scope.format));
-				scope.viewValue = selectedDate.format(scope.viewFormat);
+				scope.viewValue = selectedDate.format(scope.viewFormat) || '';
 				scope.closeCalendar();
 			};
+
+			scope.isToday = function(day) {
+				if (!day) {
+					return false;
+				}
+				var today = moment().startOf('day');
+				var newDate = moment(day.month + '/' + day.day + '/' + day.year,'MM/DD/YYYY').startOf('day');
+				return today.isSame(newDate);
+			}
+
+			scope.isSelected = function(day){
+				if (!day || !scope.viewValue.length){
+					return false;
+				}
+				var selectedDay = moment(scope.viewValue, 'MM/DD/YYYY').startOf('day');
+				var thisDay = moment(day.month + '/' + day.day + '/' + day.year,'MM/DD/YYYY').startOf('day');
+				return selectedDay.isSame(thisDay);
+			}
 
 			// if clicked outside of calendar
 			var classList = ['ng-datepicker', 'ng-datepicker-input'];
             if (attrs.id !== undefined) classList.push(attrs.id);
 			$document.on('click', function (e) {
+
 				if (!scope.calendarOpened) return;
 
 				var i = 0,
@@ -114,33 +137,32 @@ angular.module('jkuri.datepicker', [])
 
 				for (element = e.target; element; element = element.parentNode) {
 					var id = element.id;
-					var classNames = element.className;
 
 					if (id !== undefined) {
 						for (i = 0; i < classList.length; i += 1) {
-							if (id.indexOf(classList[i]) > -1 || classNames.indexOf(classList[i]) > -1) {
-								debugger;
+							if (id.indexOf(classList[i]) > -1) {
 								return;
 							}
 						}
 					}
 				}
-
 				scope.closeCalendar();
 				scope.$apply();
 			});
 
 			ngModel.$render = function () {
 				var newValue = ngModel.$viewValue;
-				if (newValue !== undefined) {
-					scope.viewValue = moment(newValue).format(attrs.viewFormat);
+				if (newValue && newValue !== undefined) {
+					scope.viewValue = moment(newValue).format(scope.viewFormat);
 					scope.dateValue = newValue;
+				} else {
+					scope.viewValue = '';
 				}
 			};
 
 		},
 		template:
-		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input" placeholder="{{ placeholder }}"></div>' +
+		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input {{externalClasses}}" placeholder="{{ placeholder }}"></div>' +
 		'<div class="ng-datepicker" ng-show="calendarOpened">' +
 		'  <div class="controls">' +
 		'    <div class="left">' +
@@ -160,7 +182,7 @@ angular.module('jkuri.datepicker', [])
 		'  </div>' +
 		'  <div class="calendar">' +
 		'    <span ng-repeat="d in days">' +
-		'      <span class="day" ng-click="selectDate($event, d)" ng-class="{disabled: !d.enabled}">{{ d.day }}</span>' +
+		'      <span class="day" ng-click="selectDate($event, d)" ng-class="{disabled: !d.enabled, today: isToday(d), selected:isSelected(d) }">{{ d.day }}</span>' +
 		'    </span>' +
 		'  </div>' +
 		'</div>'
