@@ -106,12 +106,13 @@ angular.module('jkuri.datepicker', [])
             if (attrs.id !== undefined) classList.push(attrs.id);
 			$document.on('click', function (e) {
 				console.log('Logging scope var calendarOpened',scope.calendarOpened);
-				if (!scope.calendarOpened) console.log('!calendarOpened');return;
+				debugger;
+				if (!scope.calendarOpened) return;
 
 				var i = 0,
 					element;
 
-				if (!e.target) console.log('!e.target'); return;
+				if (!e.target) return;
 
 				for (element = e.target; element; element = element.parentNode) {
 					var id = element.id;
