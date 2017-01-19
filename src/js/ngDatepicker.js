@@ -105,8 +105,6 @@ angular.module('jkuri.datepicker', [])
 			var classList = ['ng-datepicker', 'ng-datepicker-input'];
             if (attrs.id !== undefined) classList.push(attrs.id);
 			$document.on('click', function (e) {
-				console.log('Logging scope var calendarOpened',scope.calendarOpened);
-				debugger;
 				if (!scope.calendarOpened) return;
 
 				var i = 0,
@@ -121,6 +119,7 @@ angular.module('jkuri.datepicker', [])
 					if (id !== undefined) {
 						for (i = 0; i < classList.length; i += 1) {
 							if (id.indexOf(classList[i]) > -1 || classNames.indexOf(classList[i]) > -1) {
+								debugger;
 								return;
 							}
 						}
