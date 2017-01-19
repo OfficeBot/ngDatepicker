@@ -1,6 +1,6 @@
 {
   "name": "ng-datepicker",
-  "version": "1.1.0",
+  "version": "1.1.0.1",
   "description": "AngularJS Datepicker",
   "main": "index.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "fontawesome"
   ],
   "author": "Jan Kuri <jkuri88@gmail.com>",
-  "contributors" : [{ 
+  "contributors" : [{
     "name" : "Scott Peterson",
     "email" : "scott.peterson@office-bot.com",
     "url" : "https://www.office-bot.com/"
