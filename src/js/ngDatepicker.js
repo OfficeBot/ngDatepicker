@@ -7,7 +7,7 @@ angular.module('jkuri.datepicker', [])
 		scope.format = attrs.format || 'MM/DD/YYYY';
 		scope.viewFormat = attrs.viewFormat || 'MM/DD/YYYY';
 		scope.locale = attrs.locale || 'en';
-		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || true; 
+		scope.firstWeekDaySunday = scope.$eval(attrs.firstWeekDaySunday) || true;
 		scope.placeholder = attrs.placeholder || 'mm/dd/yyyy';
 	};
 
@@ -36,7 +36,7 @@ angular.module('jkuri.datepicker', [])
 					month = date.month(),
 					year = date.year(),
 					n = 1;
-			
+
 				var firstWeekDay = scope.firstWeekDaySunday === true ? date.set('date', 2).day() : date.set('date', 1).day();
 				if (firstWeekDay !== 1) {
 					n -= firstWeekDay - 1;
@@ -114,10 +114,20 @@ angular.module('jkuri.datepicker', [])
 				return today.isSame(newDate);
 			}
 
+			scope.isSelected = function(day){
+				if (!day || !scope.viewValue.length){
+					return false;
+				}
+				var selectedDay = moment(scope.viewValue, 'MM/DD/YYYY').startOf('day');
+				var thisDay = moment(day.month + '/' + day.day + '/' + day.year,'MM/DD/YYYY').startOf('day');
+				return selectedDay.isSame(thisDay);
+			}
+
 			// if clicked outside of calendar
 			var classList = ['ng-datepicker', 'ng-datepicker-input'];
             if (attrs.id !== undefined) classList.push(attrs.id);
 			$document.on('click', function (e) {
+
 				if (!scope.calendarOpened) return;
 
 				var i = 0,
@@ -127,17 +137,15 @@ angular.module('jkuri.datepicker', [])
 
 				for (element = e.target; element; element = element.parentNode) {
 					var id = element.id;
-					var classNames = element.className;
 
 					if (id !== undefined) {
 						for (i = 0; i < classList.length; i += 1) {
-							if (id.indexOf(classList[i]) > -1 || classNames.indexOf(classList[i]) > -1) {
+							if (id.indexOf(classList[i]) > -1) {
 								return;
 							}
 						}
 					}
 				}
-
 				scope.closeCalendar();
 				scope.$apply();
 			});
@@ -153,7 +161,7 @@ angular.module('jkuri.datepicker', [])
 			};
 
 		},
-		template: 
+		template:
 		'<div><input type="text" ng-focus="showCalendar()" ng-value="viewValue" class="ng-datepicker-input {{externalClasses}}" placeholder="{{ placeholder }}"></div>' +
 		'<div class="ng-datepicker" ng-show="calendarOpened">' +
 		'  <div class="controls">' +
@@ -162,7 +170,7 @@ angular.module('jkuri.datepicker', [])
 		'      <i class="fa fa-angle-left prev-month-btn" ng-click="prevMonth()"></i>' +
 		'    </div>' +
 		'    <span class="date" ng-bind="dateValue"></span>' +
-		'    <div class="right">' + 
+		'    <div class="right">' +
 		'      <i class="fa fa-angle-right next-month-btn" ng-click="nextMonth()"></i>' +
 		'      <i class="fa fa-forward next-year-btn" ng-click="nextYear()"></i>' +
 		'    </div>' +
@@ -174,11 +182,10 @@ angular.module('jkuri.datepicker', [])
 		'  </div>' +
 		'  <div class="calendar">' +
 		'    <span ng-repeat="d in days">' +
-		'      <span class="day" ng-click="selectDate($event, d)" ng-class="{disabled: !d.enabled, today: isToday(d) }">{{ d.day }}</span>' +
+		'      <span class="day" ng-click="selectDate($event, d)" ng-class="{disabled: !d.enabled, today: isToday(d), selected:isSelected(d) }">{{ d.day }}</span>' +
 		'    </span>' +
 		'  </div>' +
 		'</div>'
 	};
 
 }]);
-
